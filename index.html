@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>字幕編集ポートフォリオ</title>
+<meta name="description" content="Claude Code を使って、文字起こし・校正・翻訳・字幕デザイン・焼き込みまでを行った動画編集の制作例。">
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1b2330; --muted: #5d6878;
+    --line: #dfe3ea; --accent: #1e3a8a; --accent-soft: #e6ecfb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f141c; --card: #171e29; --text: #e8ecf2; --muted: #9aa5b5;
+            --line: #283243; --accent: #8fb0ff; --accent-soft: #1b2745; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: "Yu Gothic UI", "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif; line-height: 1.75; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header.hero { padding: 64px 0 40px; }
+  .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .08em; font-size: .85rem; }
+  h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.3; margin: .3em 0 .5em; }
+  .lead { color: var(--muted); max-width: 40em; }
+  h2 { font-size: 1.5rem; margin: 56px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  video, iframe { width: 100%; border: 0; border-radius: 8px; background: #000; display: block; aspect-ratio: 16/9; }
+  [hidden] { display: none !important; }
+  .note { background: var(--accent-soft); border-radius: 8px; padding: 10px 14px; color: var(--text); }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tabs button { font: inherit; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line);
+                 background: var(--card); color: var(--text); cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  @media (prefers-color-scheme: dark) { .tabs button[aria-selected="true"] { color: #0f141c; } }
+  .tabs button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .meta { color: var(--muted); font-size: .92rem; margin: 12px 0 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+  .label { font-size: .8rem; font-weight: 700; color: var(--accent); background: var(--accent-soft);
+           display: inline-block; padding: 2px 10px; border-radius: 999px; margin-bottom: 8px; }
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ol.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+                padding: 14px 16px 14px 56px; position: relative; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 16px; top: 14px; width: 28px; height: 28px;
+                        border-radius: 50%; background: var(--accent); color: #fff; text-align: center; font-weight: 700; line-height: 28px; }
+  @media (prefers-color-scheme: dark) { ol.steps li::before { color: #0f141c; } }
+  ol.steps b { display: block; }
+  ol.steps span { color: var(--muted); font-size: .93rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { width: 9em; color: var(--muted); font-weight: 600; }
+  a { color: var(--accent); }
+  .tag { display: inline-block; font-size: .82rem; border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; margin: 2px 4px 2px 0; background: var(--card); }
+  footer { margin: 64px 0 40px; color: var(--muted); font-size: .88rem; }
+  .fix li { margin: 2px 0; }
+  .arrow { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">SUBTITLE EDITING PORTFOLIO</div>
+  <h1>文字起こしから字幕デザインまで、<br>Claude Code で仕上げた字幕編集</h1>
+  <p class="lead">音声の文字起こし、固有名詞の校正、日英翻訳、ニュース風テロップのデザイン、動画への焼き込みまでを、Claude Code とフリー素材だけで制作しました。</p>
+</header>
+
+<main>
+<section aria-labelledby="works">
+  <h2 id="works">制作物</h2>
+  <div class="card">
+    <div class="tabs" role="tablist" aria-label="動画の切り替え">
+      <button role="tab" aria-selected="true"  data-yt="0ascjhrTh_E" data-desc="日本語字幕・ニュース風テロップ(濃紺の帯に白文字)">日本語字幕</button>
+      <button role="tab" aria-selected="false" data-yt="BvbKCZegRNs" data-desc="英語字幕・ニュース風テロップ。日本語字幕を英訳し、同じタイミングで表示">English subtitles</button>    </div>
+    <iframe id="yt" title="字幕付き動画" src="https://www.youtube-nocookie.com/embed/0ascjhrTh_E" loading="lazy"
+            allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="meta" id="desc">日本語字幕・ニュース風テロップ(濃紺の帯に白文字)</p>
+    <p class="meta">YouTube で見る: <a href="https://youtu.be/0ascjhrTh_E" target="_blank" rel="noopener">日本語版</a> / <a href="https://youtu.be/BvbKCZegRNs" target="_blank" rel="noopener">English version</a></p>
+    <p class="meta note"><b>字幕が二重に見える場合:</b> YouTube の自動字幕が表示されています。動画右下の字幕ボタン(CC)を押すとオフにできます。<br><span lang="en">If you see extra captions, they are YouTube's auto-generated captions. Turn them off with the CC button at the bottom right of the player.</span></p>
+    <p class="meta">字幕スタイル: 濃紺の半透明の帯に白文字。背景が明るくても読みやすく、報道番組のテロップに近い見た目にしています。</p>
+    <p class="meta">素材: 岸田総理 フィリピン・マレーシア訪問についての会見(約1分54秒) / 1280×720</p>
+  </div>
+</section>
+
+<section aria-labelledby="process">
+  <h2 id="process">制作工程</h2>
+  <ol class="steps">
+    <li><b>素材の選定とライセンス確認</b><span>商用利用できる CC BY の公式動画を選び、出典とライセンスを記録。webm は ffmpeg で mp4(H.264/AAC)に変換。</span></li>
+    <li><b>文字起こし</b><span>faster-whisper(medium)で音声を認識し、SRT を生成。</span></li>
+    <li><b>校正</b><span>固有名詞や専門用語の認識ミスを文脈から修正し、公式発言録と照合して確認。</span></li>
+    <li><b>翻訳</b><span>校正済みの日本語を英訳。元の発言の区切りに合わせて時間割りを維持。</span></li>
+    <li><b>字幕デザインと分割</b><span>1行24文字(英語は約58文字)以内に句読点で区切り、文字数に応じて表示時間を按分。ASS 形式でスタイルを定義。</span></li>
+    <li><b>焼き込みと確認</b><span>ffmpeg で映像に字幕を焼き込み、フレームを書き出して見切れや欠けがないか確認。</span></li>
+  </ol>
+</section>
+
+<section aria-labelledby="fix">
+  <h2 id="fix">校正の例</h2>
+  <div class="card">
+    <p class="meta" style="margin-top:0">音声認識の誤りを文脈から直した主な箇所です。</p>
+    <table>
+      <tr><th>認識結果</th><td>フィニッグとマレーシア <span class="arrow">→</span> <b>フィリピンとマレーシア</b></td></tr>
+      <tr><th>認識結果</th><td>人国間関係 <span class="arrow">→</span> <b>二国間関係</b></td></tr>
+      <tr><th>認識結果</th><td>本部試合に基づく <span class="arrow">→</span> <b>法の支配に基づく</b></td></tr>
+      <tr><th>認識結果</th><td>日朝や独立首脳会議 <span class="arrow">→</span> <b>日・ASEAN特別首脳会議</b></td></tr>
+    </table>
+  </div>
+</section>
+
+<section aria-labelledby="tools">
+  <h2 id="tools">使用ツール</h2>
+  <div class="card">
+    <span class="tag">Claude Code</span><span class="tag">ffmpeg</span><span class="tag">faster-whisper</span>
+    <span class="tag">ASS(Advanced SubStation Alpha)</span><span class="tag">Python</span>
+    <p class="meta">スクリプトは文字起こし(transcribe.py)と、分割・ASS生成・焼き込み(build_subs.py)の2本です。</p>
+  </div>
+</section>
+
+<section aria-labelledby="credit">
+  <h2 id="credit">素材のクレジット</h2>
+  <div class="card">
+    <table>
+      <tr><th>素材</th><td>フィリピン共和国及びマレーシア訪問についての会見(令和5年11月3日)</td></tr>
+      <tr><th>出典</th><td>首相官邸 / <a href="https://commons.wikimedia.org/wiki/Category:Videos_of_Fumio_Kishida" target="_blank" rel="noopener">Wikimedia Commons</a></td></tr>
+      <tr><th>ライセンス</th><td><a href="https://creativecommons.org/licenses/by/3.0/deed.ja" target="_blank" rel="noopener">CC BY 3.0</a></td></tr>
+      <tr><th>改変内容</th><td>形式変換、字幕(日本語・英語)の追加。英訳は制作者による翻訳で、公式の英語版ではありません。</td></tr>
+    </table>
+  </div>
+</section>
+</main>
+
+<footer>
+  この動画の編集内容は首相官邸の見解を示すものではありません。字幕の誤りは制作者の責任です。
+</footer>
+</div>
+
+<script>
+  const yt = document.getElementById('yt');
+  const desc = document.getElementById('desc');
+  const tabs = document.querySelectorAll('[role="tab"]');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', t === tab));
+    yt.src = 'https://www.youtube-nocookie.com/embed/' + tab.dataset.yt;
+    desc.textContent = tab.dataset.desc;
+  }));
+</script>
+</body>
+</html>
